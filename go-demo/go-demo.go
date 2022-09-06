@@ -39,7 +39,6 @@ func main() {
 	router.POST("/api/insert", insertUser)
 	router.POST("/api/update", updateUser)
 	router.POST("/api/delete", deleteUser)
-
 	router.Run("localhost:8080")
 }
 
@@ -67,20 +66,17 @@ func getUsers(c *gin.Context) {
 	//c.IndentedJSON(http.StatusOK, req)
 	c.JSON(http.StatusOK, res)
 	/*
-		   convert json
-
-		pigeon := &Bird{
-			Species:     "Pigeon",
-			Description: "likes to eat seed",
-		}
-
-		data, _ := json.Marshal(pigeon)
-		fstruct := &Bird{}
-		var d string = string(data)
-		log.Println(d)
-		json.Unmarshal([]byte(d), fstruct)
-		c.IndentedJSON(http.StatusOK, fstruct)
-
+		///convert json
+			pigeon := &Bird{
+				Species:     "Pigeon",
+				Description: "likes to eat seed",
+			}
+			data, _ := json.Marshal(pigeon)
+			fstruct := &Bird{}
+			var d string = string(data)
+			log.Println(d)
+			json.Unmarshal([]byte(d), fstruct)
+			c.IndentedJSON(http.StatusOK, fstruct)
 	*/
 }
 
@@ -101,11 +97,6 @@ func insertUser(c *gin.Context) {
 		res, e := stmt.Exec(user.Id, user.Firstname, user.Lastname, user.Email, user.Tel)
 		ErrorCheck(e)
 
-		id, e := res.LastInsertId()
-		ErrorCheck(e)
-
-		fmt.Println("Insert id", id)
-
 		lastId, err := res.LastInsertId()
 
 		if err != nil {
@@ -122,7 +113,6 @@ func insertUser(c *gin.Context) {
 	} else {
 		resp = &responsemodel.Responsemodel{Code: "S200", Desc: "Email นี้มีอยู่ในระบบแล้วไม่สามารถลงทะเบียนซ้ำ !", Data: []model.User{}}
 	}
-
 	//c.IndentedJSON(http.StatusOK, req)
 	c.JSON(http.StatusOK, resp)
 
@@ -145,21 +135,16 @@ func updateUser(c *gin.Context) {
 
 	a, e := res.RowsAffected()
 	ErrorCheck(e)
-
-	fmt.Println(a)
 	if a != 0 {
 		resp = &responsemodel.Responsemodel{Code: "S200", Desc: "Update Success", Data: []model.User{}}
 	} else {
 		resp = &responsemodel.Responsemodel{Code: "E200", Desc: "Update fail", Data: []model.User{}}
 	}
-
 	c.IndentedJSON(http.StatusOK, resp)
 }
 
 func deleteUser(c *gin.Context) {
-
 	var resp = &responsemodel.Responsemodel{}
-
 	reqBody, _ := ioutil.ReadAll(c.Request.Body)
 	var user model.User
 	json.Unmarshal(reqBody, &user)
@@ -175,14 +160,12 @@ func deleteUser(c *gin.Context) {
 	// affected rows
 	a, e := res.RowsAffected()
 	ErrorCheck(e)
-	fmt.Println(a) // 1
 	//if res.LastInsertId()
 	if a != 0 {
 		resp = &responsemodel.Responsemodel{Code: "S200", Desc: "Delete Success", Data: []model.User{}}
 	} else {
 		resp = &responsemodel.Responsemodel{Code: "E200", Desc: "Delete fail", Data: []model.User{}}
 	}
-
 	c.JSON(http.StatusOK, resp)
 }
 
@@ -207,7 +190,6 @@ func findUserByEmail(email string) model.User {
 
 	// query by email
 	rows, err := db.Query("select id, firstname, lastname, email, tel from user where EMAIL = ?", email)
-
 	ErrorCheck(err)
 
 	defer rows.Close()
@@ -218,7 +200,6 @@ func findUserByEmail(email string) model.User {
 		user = u
 		//log.Println("+++++++++++++++++++++++++++++++++++++++++++++")
 		//log.Println(u.Id, u.Firstname, u.Lastname, u.Email, u.Tel)
-
 	}
 	ErrorCheck(err)
 	result = user
