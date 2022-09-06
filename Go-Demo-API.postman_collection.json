@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "ac872467-692b-4206-9363-802e71d90970",
+		"name": "Go-Demo-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22886250"
+	},
+	"item": [
+		{
+			"name": "{{url}}/user",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-go}}/user",
+					"host": [
+						"{{url-go}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/api/insert",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\": \"ชื่อ3\",\r\n    \"lastname\": \"นามสกุล3\",\r\n    \"email\": \"email3@gmail.com\",\r\n    \"tel\": \"0984567893\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-go}}/api/insert",
+					"host": [
+						"{{url-go}}"
+					],
+					"path": [
+						"api",
+						"insert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/api/update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 4,\r\n    \"firstname\": \"ฝนตก4\",\r\n    \"lastname\": \"ที่หน้าต่าง4\",\r\n    \"email\": \"Test4@gmail.com\",\r\n    \"tel\": \"0981111110\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-go}}/api/update",
+					"host": [
+						"{{url-go}}"
+					],
+					"path": [
+						"api",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/api/delete",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 15\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url-go}}/api/delete",
+					"host": [
+						"{{url-go}}"
+					],
+					"path": [
+						"api",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url-go",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}

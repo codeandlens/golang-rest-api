@@ -198,7 +198,6 @@ func findUserByEmail(email string) model.User {
 		err := rows.Scan(&u.Id, &u.Firstname, &u.Lastname, &u.Email, &u.Tel)
 		ErrorCheck(err)
 		user = u
-		//log.Println("+++++++++++++++++++++++++++++++++++++++++++++")
 		//log.Println(u.Id, u.Firstname, u.Lastname, u.Email, u.Tel)
 	}
 	ErrorCheck(err)
